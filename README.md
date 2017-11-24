@@ -1,7 +1,9 @@
 # xrxs
 OSINT framework in picolisp. 
 
+
 Currently it requires 'w3m besides www.picolisp.com. 
+
 
 TODO:
 
