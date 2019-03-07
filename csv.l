@@ -57,4 +57,9 @@
     (let Lst (readCsv File Delim)
         (newCsv Lst Nm)))
 
+(de makeCsvIso (File Nm Delim)
+    (default Delim *DefDelim)
+    (let Lst (readCsvIso File Delim)
+        (newCsv Lst Nm)))
+
 
