@@ -1,5 +1,11 @@
 # csv 
 
+# globals
+
+(setq *DefDelim ";")
+
+# E/R
+
 (class +Csv +Entity)
 (rel id (+Key +Number))
 (rel nm (+String))
@@ -25,19 +31,30 @@
             (for X (: dt)
                 (prinl (glue Delim X))))))
 
+# functions
+
 (de newCsv (Lst Nm)
    (new! '(+Csv) 'id (genKey 'id '+Csv) 'hd (car Lst) 'dt (cdr Lst)))
 
-(de listCsv (File Delim)
-    (default Delim ";")
+(de readCsv (File Delim)
+    (default Delim *DefDelim)
     (make 
         (in File 
             (until (eof)
                 (link 
                     (mapcar pack (split (line) Delim)))))))
 
+(de readCsvIso (File Delim)
+    (default Delim *DefDelim)
+    (make 
+        (in (list "iconv" "-fISO-8859-1" "-tUTF-8" File)
+            (until (eof)
+                (link
+                    (mapcar pack (split (line) Delim)))))))
+
 (de makeCsv (File Nm Delim)
-    (let Lst (listCsv File Delim)
+    (default Delim *DefDelim)
+    (let Lst (readCsv File Delim)
         (newCsv Lst Nm)))
 
 
