@@ -24,10 +24,10 @@
       (length (: dt))))
 
 (dm writeFile> (File Delim)
-    (default Delim ";")
+    (default Delim *DefDelim)
     (with This
         (out File 
-            (prinl (: hd))
+            (prinl (glue Delim (: hd)))
             (for X (: dt)
                 (prinl (glue Delim X))))))
 
