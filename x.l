@@ -1,5 +1,6 @@
 
 (load "csv.l")
+(load "xnet.l")
 (load "nmap.l")
 
 # classes 
